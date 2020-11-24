@@ -1,6 +1,6 @@
 {
   "name": "amplify-graphql-fragments-generator",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "amplify graphql docs with fragments generator plugin",
   "repository": {
     "type": "git",
