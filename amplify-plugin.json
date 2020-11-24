@@ -1,0 +1,6 @@
+{
+  "name": "codegen-with-fragments",
+  "type": "util",
+  "commands": ["generate", "version", "help"],
+  "eventHandlers": ["PostPush"]
+}

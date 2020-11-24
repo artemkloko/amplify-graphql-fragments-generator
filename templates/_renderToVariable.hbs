@@ -1,0 +1,29 @@
+{{#each imports as |variables from| }}
+{{#if variables.length}}
+import {
+  {{#each variables as |variable| }}
+    {{variable}},
+  {{/each}}
+} from "{{from}}";
+
+{{/if}}
+{{/each}}
+
+{{#each fragments }}
+  export const {{variableName}} =  /* GraphQL */`
+      {{> renderExternalFragment }}
+    {{#each refs }}
+      ${ {{camelCase this }} }
+    {{/each}}`;
+
+{{/each}}
+
+{{#each operations }}
+  export const {{camelCase name}} =  /* GraphQL */`
+      {{> renderOp }}
+    {{#each refs }}
+      ${ {{camelCase this }} }
+    {{/each}}`;
+
+{{/each}}
+
