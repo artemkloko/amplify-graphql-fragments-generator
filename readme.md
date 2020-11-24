@@ -46,6 +46,7 @@ After pushing the API - run `amplify codegen-with-fragments generate`
 ```sh
 amplify push api
 amplify codegen-with-fragments generate
+amplify codegen types
 ```
 
 Check out your `docsFilePath` for the results
