@@ -23,7 +23,7 @@ export const getFields = (
    * amplify-cli/packages/amplify-graphql-docs-generator/src/generator/getFields.ts
    */
   const fieldType = getType(field.type);
-  const isFragment = context.options.fragments.includes(fieldType.name);
+  const isFragment = context.options.fragments?.includes(fieldType.name);
   const renderS3FieldFragment =
     context.options.useExternalFragmentForS3Object && isS3Object(fieldType);
   const subFields =
@@ -35,9 +35,9 @@ export const getFields = (
 
   if (
     depth < 1 &&
-    !(isFragment || isScalarType(fieldType) || isEnumType(fieldType))
+    !(isScalarType(fieldType) || isEnumType(fieldType))
   ) {
-    return { fields: [], fragments: [], hasBody: false, name: field.name };
+    return undefined;
   }
 
   const fields = Object.keys(subFields)
@@ -78,7 +78,7 @@ export const getFields = (
     fragments.length === 0 &&
     !renderS3FieldFragment
   ) {
-    return { fields: [], fragments: [], hasBody: false, name: field.name };
+    return undefined;
   }
 
   const templateField: TemplateField = {

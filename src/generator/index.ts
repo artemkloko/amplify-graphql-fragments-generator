@@ -20,7 +20,7 @@ export const generate = async (
     maxDepth: number;
     separateFiles: boolean;
     language: string;
-    fragments: string[];
+    fragments?: string[];
   }
 ) => {
   const { language } = options;

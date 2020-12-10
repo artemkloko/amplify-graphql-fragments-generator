@@ -15,6 +15,9 @@ export const getBody = (context: Context, op: GraphQLField<any, any>) => {
     value: `\$${arg.name}`,
   }));
   const fields = getFields(context, op, context.options.maxDepth);
+  if (!fields) {
+    return undefined;
+  }
   const templateOpBody: TemplateOpBody = { args, ...fields };
   return templateOpBody;
 };

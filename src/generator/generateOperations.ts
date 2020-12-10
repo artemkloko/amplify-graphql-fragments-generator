@@ -24,7 +24,9 @@ export const generateOperations = (
           type,
           operationsMap[operationName]
         );
-        operations.push(operationTemplate);
+        if (operationTemplate) {
+          operations.push(operationTemplate);
+        }
       }
     }
   }

@@ -54,6 +54,10 @@ export const collectRefsFromFields = (fields: TemplateField[]) => {
  * deepest/smallest fragments will be first).
  */
 export const getFragments = (context: Context) => {
+  if (!context.options.fragments) {
+    return [];
+  }
+
   const fragments: Record<string, TemplateFragment> = {};
 
   for (const name of context.options.fragments) {
@@ -91,16 +95,13 @@ export const getFragments = (context: Context) => {
       !order.includes(fragment.variableName)
     ) {
       refs.push(fragment.variableName);
+      console.log('adding ref', fragment.variableName);
+      
     }
     /**
-     * Add to collection in order of:
-     *  - first - the currently collected refs (which are already ordered, and
-     *    possibly contain the current fragment last)
-     *  - then - the previously collected refs filtered for uniqueness (because
-     *    multiple fragments can refer to same refs and the currenlty collected
-     *    refs should remain first in hierarchy)
+     * Add to collection the collected refs that are not already threre
      */
-    order = [...refs, ...order.filter((ref) => !refs.includes(ref))];
+    order = [...order, ...refs.filter((ref) => !order.includes(ref))];
   }
 
   return order.map((name) => fragments[name]);

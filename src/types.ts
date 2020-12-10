@@ -43,7 +43,7 @@ export type Context = {
     maxDepth: number;
     separateFiles: boolean;
     language: Language;
-    fragments: string[];
+    fragments?: string[];
     useExternalFragmentForS3Object: boolean;
   };
 };

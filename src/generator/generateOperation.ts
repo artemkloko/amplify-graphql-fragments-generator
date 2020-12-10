@@ -20,6 +20,9 @@ export const generateOperation = (
   const name = pascalCase(operation.name);
   const args = getArgs(operation.args);
   const body = getBody(context, operation);
+  if (!body) {
+    return undefined;
+  }
   const refs = collectRefsFromFields([body]);
   const templateOp: TemplateGenericOp = { name, type, args, body, refs };
   return templateOp;

@@ -3,7 +3,7 @@ import { camelCase } from "change-case";
 
 import { GQLTemplateField } from "amplify-graphql-docs-generator/lib/generator";
 
-import { Context, TemplateFragment } from "../types";
+import { Context, TemplateField, TemplateFragment } from "../types";
 import { getFields } from "./getFields";
 import { collectRefsFromFields } from "./getFragments";
 
@@ -24,21 +24,25 @@ export const getFragment = (
   const filterFieldNames = filterFields.map((f) => f.name);
   const fields = Object.keys(subFields)
     .map((field) => getFields(context, subFields[field], nextDepth))
-    .filter((field) => !filterFieldNames.includes(field.name));
+    .filter(
+      (field): field is TemplateField =>
+        !!field && !filterFieldNames.includes(field.name)
+    );
 
-  if (fields.length) {
-    name = name || typeObj.name;
-    const refs = collectRefsFromFields(fields);
-
-    const templateFragment: TemplateFragment = {
-      on: typeObj.name,
-      fields,
-      external,
-      name,
-      variableName: camelCase(`${name}Fragment`),
-      refs,
-    };
-    return templateFragment;
+  if (!fields.length) {
+    return undefined;
   }
-  return undefined;
+
+  name = name || typeObj.name;
+  const refs = collectRefsFromFields(fields);
+
+  const templateFragment: TemplateFragment = {
+    on: typeObj.name,
+    fields,
+    external,
+    name,
+    variableName: camelCase(`${name}Fragment`),
+    refs,
+  };
+  return templateFragment;
 };
