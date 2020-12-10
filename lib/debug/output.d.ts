@@ -1,0 +1,10 @@
+export declare const locationFragment = "\n  fragment Location on Location {\n    lat\n    lon\n  }\n";
+export declare const userFragment: string;
+export declare const messageFragment: string;
+export declare const getLanguage: string;
+export declare const getLanguages: string;
+export declare const getUser: string;
+export declare const getUsers: string;
+export declare const getSomething: string;
+export declare const foo = "\n  mutation Foo {\n    foo\n  }\n";
+export declare const bar = "\n  subscription Bar {\n    bar\n  }\n";

@@ -1,0 +1,9 @@
+export declare const onCreateMessageByChat: string;
+export declare const onDeleteMessageByChat: string;
+export declare const onUpdateMessageByChat: string;
+export declare const onCreateMessage: string;
+export declare const onUpdateMessage: string;
+export declare const onDeleteMessage: string;
+export declare const onCreateUser: string;
+export declare const onUpdateUser: string;
+export declare const onDeleteUser: string;
